@@ -29,8 +29,10 @@ public class GeradorVendas {
 			
 			while(true) {
 				Venda venda = geraVenda();
-				ProducerRecord<String, Venda> record = new ProducerRecord<String, Venda>("venda-ingressos", venda);
+				String topic = "venda-ingressos";
+				ProducerRecord<String, Venda> record = new ProducerRecord<String, Venda>(topic, venda);
 				producer.send(record);
+				System.out.println(venda);
 				Thread.sleep(200);
 			}
 		}
